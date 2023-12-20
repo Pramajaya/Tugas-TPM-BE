@@ -46,71 +46,33 @@
 </nav>
 
 <div class="p-5">
-          <h1 class="text-center">Create Movie Archive</h1>
-          <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+          <h1 class="text-center">Edit Movie Archive</h1>
+          <form action="{{route('update', $movies->id)}}" method="POST">
             @csrf
+            @method('patch')
             <div class="mb-3">
               <label for="" class="form-label">Title</label>
-              <input value="{{old('title')}}" type="text" class="form-control" id="" name="title">
+              <input value="{{$movies->title}}" type="text" class="form-control" id="" name="title">
             </div>
-
-            @error('title')
-              <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @enderror
 
             <div class="mb-3">
               <label for="" class="form-label">Publisher</label>
-              <input value="{{old('publisher')}}" type="text" class="form-control" id="" name="publisher">
+              <input value="{{$movies->publisher}}" type="text" class="form-control" id="" name="publisher">
             </div>
-
-            @error('publisher')
-              <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Director</label>
-                <input value="{{old('director')}}" type="text" class="form-control" id="" name="director">
+                <input value="{{$movies->director}}" type="text" class="form-control" id="" name="director">
             </div>
-
-            @error('director')
-              <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Publication Date</label>
-                <input value="{{old('publicationDate')}}" type="date" class="form-control" id="" name="publicationDate">
+                <input  value="{{$movies->publicationDate}}" type="date" class="form-control" id="" name="publicationDate">
             </div>
-
-            @error('publicationDate')
-              <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Running Time</label>
-                <input value="{{old('length')}}" type="number" class="form-control" id="" name="length">
-            </div>
-
-            @error('length')
-              <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @enderror
-
-            <div class="mb-3">
-                <label for="" class="form-label">Image</label>
-                <input type="file" class="form-control" id="" name="image">
-            </div>
-
-            @error('image')
-              <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @enderror
-
-            <div class="mb-3">
-                <label for="" class="form-label">Category</label>
-                <select class="form-select" aria-label="Default select example" name="category_name">
-                    @foreach ($categories as $c)
-                        <option value="{{$c->id}}">{{$c->category_name}}</option>
-                    @endforeach
-
-                </select>
+                <input value="{{$movies->length}}" type="number" class="form-control" id="" name="length">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

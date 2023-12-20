@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Movie Archive</a>
@@ -46,17 +46,31 @@
 </nav>
 
   <h1 class="text-center">Movie Archive</h1>
+  <form action="{{route('create')}}">
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-success" type="button">Create</button>
+    </div>
+  </form>
+
     <div class="d-flex flex-row justify-content-center gap-5">
     @foreach ($movies as $m)
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{asset('/storage/image/'. $m->image)}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Title: {{$m->title}}</h5>
               <p class="card-text">Publisher: {{$m->publisher}}</p>
               <p class="card-text">Director: {{$m->director}}</p>
               <p class="card-text">Publication Date: {{$m->publicationDate}}</p>
               <p class="card-text">Running Time: {{$m->length}}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">Category: {{$m->category->category_name}}</p>
+              <a href="{{route('edit', $m->id)}}" class="btn btn-warning">Edit</a>
+
+              <form action="{{route('delete', $m->id)}}" method="POST">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+
             </div>
           </div>
           @endforeach

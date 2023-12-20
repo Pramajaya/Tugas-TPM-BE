@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('director');
             $table->date('publicationDate');
             $table->integer('length');
+            $table->string('image');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

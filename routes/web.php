@@ -19,3 +19,9 @@ Route::get('/', [MovieController::class, 'first'])->name('first');
 Route::get('/create', [MovieController::class, 'create'])->name('create');
 
 Route::post('/store', [MovieController::class, 'store'])->name('store');
+
+Route::get('/edit/{id}', [MovieController::class, 'edit'])->name('edit');
+
+Route::patch('/update/{id}', [MovieController::class, 'update'])->name('update');
+
+Route::delete('/delete/{id}', [MovieController::class, 'delete'])->name('delete');
